@@ -1,0 +1,42 @@
+syntax = "proto3";
+package service;
+
+import "google/protobuf/empty.proto";
+import "annotations.proto";
+
+option java_package = "com.onedevoneops.grpcserver.service";
+option java_multiple_files = true;
+
+message HeroName {
+  string name = 1;
+  int32 hero_id = 2;
+  string localized_name = 3;
+}
+
+message HeroNameResponse {
+  repeated HeroName heroNames = 1;
+}
+
+message TeamFight {
+  int32 match_id = 1;
+  int32 start = 2;
+  int32 end = 3;
+  int32 last_death = 4;
+  int32 deaths = 5;
+}
+
+message TeamFightResponse {
+  repeated TeamFight teamFights = 1;
+}
+
+service PayloadTestService {
+
+  rpc getSmallPayload(google.protobuf.Empty) returns (HeroNameResponse) {
+    option (google.api.http) = {
+      get: "/api/payloads/heroes"
+    };
+  }
+  rpc getLargePayload(google.protobuf.Empty) returns (TeamFightResponse);
+  rpc postSmallPayload(HeroNameResponse) returns (google.protobuf.Empty);
+  rpc postLargePayload(TeamFightResponse) returns (google.protobuf.Empty);
+}
