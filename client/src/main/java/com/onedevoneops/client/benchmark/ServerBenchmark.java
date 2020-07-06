@@ -48,7 +48,7 @@ public class ServerBenchmark {
   @BenchmarkMode(Mode.All)
   @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void benchmarkLargePayloadRest(ExecutionPlan plan, Blackhole blackhole) {
-    ResponseEntity<GetTeamFights> largePayloadRest = plan.restTemplate.getForEntity("http://localhost:8081/api/payloads/teamfights", GetTeamFights.class);
+    ResponseEntity<GetTeamFights> largePayloadRest = plan.restTemplate.getForEntity("http://localhost:8081/api/payloads/fights", GetTeamFights.class);
     blackhole.consume(largePayloadRest);
   }
 }
