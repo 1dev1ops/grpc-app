@@ -16,7 +16,7 @@ import org.springframework.web.client.RestTemplate;
 public class ExecutionPlan {
 
   private static final ManagedChannel CHANNEL =
-      ManagedChannelBuilder.forAddress("localhost", 8080).usePlaintext().build();
+      ManagedChannelBuilder.forAddress("localhost", 8080).maxInboundMessageSize(9999999).usePlaintext().build();
 
   public RestTemplate restTemplate;
 
