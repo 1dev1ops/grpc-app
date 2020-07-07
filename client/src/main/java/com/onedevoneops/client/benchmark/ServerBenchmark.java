@@ -5,7 +5,6 @@ import com.onedevoneops.grpc.service.HeroNameResponse;
 import com.onedevoneops.grpc.service.TeamFightResponse;
 import com.onedevoneops.springrestapp.bean.request.GetHeroNames;
 import com.onedevoneops.springrestapp.bean.request.GetTeamFights;
-
 import java.util.concurrent.TimeUnit;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
@@ -20,15 +19,16 @@ import org.springframework.http.ResponseEntity;
 public class ServerBenchmark {
 
   @Benchmark
-  @BenchmarkMode(Mode.All)
+  @BenchmarkMode(Mode.Throughput)
   @OutputTimeUnit(TimeUnit.MILLISECONDS)
-  public void benchmarkSmallPayloadGrpc(ExecutionPlan plan, Blackhole blackhole) {
+  public void benchmarkGrpcWithSmallPayload(ExecutionPlan plan, Blackhole blackhole) {
     HeroNameResponse smallPayload = plan.stub.getSmallPayload(Empty.newBuilder().build());
+
     blackhole.consume(smallPayload);
   }
 
   @Benchmark
-  @BenchmarkMode(Mode.All)
+  @BenchmarkMode(Mode.Throughput)
   @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void benchmarkSmallPayloadRest(ExecutionPlan plan, Blackhole blackhole) {
     ResponseEntity<GetHeroNames> smallPayloadRest = plan.restTemplate.getForEntity(plan.uriForSmallPayload, GetHeroNames.class);
@@ -36,15 +36,16 @@ public class ServerBenchmark {
   }
 
   @Benchmark
-  @BenchmarkMode(Mode.All)
+  @BenchmarkMode(Mode.Throughput)
   @OutputTimeUnit(TimeUnit.MILLISECONDS)
-  public void benchmarkLargePayloadGrpc(ExecutionPlan plan, Blackhole blackhole) {
+  public void benchmarkGrpcWithLargePayload(ExecutionPlan plan, Blackhole blackhole) {
     TeamFightResponse largePayload = plan.stub.getLargePayload(Empty.newBuilder().build());
+
     blackhole.consume(largePayload);
   }
 
   @Benchmark
-  @BenchmarkMode(Mode.All)
+  @BenchmarkMode(Mode.Throughput)
   @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void benchmarkLargePayloadRest(ExecutionPlan plan, Blackhole blackhole) {
     ResponseEntity<GetTeamFights> largePayloadRest = plan.restTemplate.getForEntity(plan.uriForLargePayload, GetTeamFights.class);
