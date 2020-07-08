@@ -1,9 +1,8 @@
 syntax = "proto3";
-package service;
+package com.onedevoneops.grpc.service;
 
 import "google/protobuf/empty.proto";
 
-option java_package = "com.onedevoneops.grpcserver.service";
 option java_multiple_files = true;
 
 message HeroName {

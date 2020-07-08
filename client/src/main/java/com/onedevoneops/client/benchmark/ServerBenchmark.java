@@ -1,9 +1,8 @@
 package com.onedevoneops.client.benchmark;
 
 import com.google.protobuf.Empty;
-import com.onedevoneops.grpcserver.service.HeroNameResponse;
-import com.onedevoneops.grpcserver.service.TeamFight;
-import com.onedevoneops.grpcserver.service.TeamFightResponse;
+import com.onedevoneops.grpc.service.HeroNameResponse;
+import com.onedevoneops.grpc.service.TeamFightResponse;
 import com.onedevoneops.springrestapp.bean.request.GetHeroNames;
 import com.onedevoneops.springrestapp.bean.request.GetTeamFights;
 
@@ -32,7 +31,7 @@ public class ServerBenchmark {
   @BenchmarkMode(Mode.All)
   @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void benchmarkSmallPayloadRest(ExecutionPlan plan, Blackhole blackhole) {
-    ResponseEntity<GetHeroNames> smallPayloadRest = plan.restTemplate.getForEntity("http://localhost:8081/api/payloads/heroes", GetHeroNames.class);
+    ResponseEntity<GetHeroNames> smallPayloadRest = plan.restTemplate.getForEntity(plan.uriForSmallPayload, GetHeroNames.class);
     blackhole.consume(smallPayloadRest);
   }
 
@@ -48,7 +47,7 @@ public class ServerBenchmark {
   @BenchmarkMode(Mode.All)
   @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void benchmarkLargePayloadRest(ExecutionPlan plan, Blackhole blackhole) {
-    ResponseEntity<GetTeamFights> largePayloadRest = plan.restTemplate.getForEntity("http://localhost:8081/api/payloads/fights", GetTeamFights.class);
+    ResponseEntity<GetTeamFights> largePayloadRest = plan.restTemplate.getForEntity(plan.uriForLargePayload, GetTeamFights.class);
     blackhole.consume(largePayloadRest);
   }
 }

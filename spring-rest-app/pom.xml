@@ -10,7 +10,6 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
   <artifactId>spring-rest-app</artifactId>
-
   <name>spring-rest-app</name>
 
   <dependencies>
