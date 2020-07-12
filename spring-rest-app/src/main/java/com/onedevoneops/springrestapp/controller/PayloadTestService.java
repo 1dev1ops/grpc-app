@@ -4,9 +4,8 @@ import com.onedevoneops.springrestapp.bean.HeroNameBean;
 import com.onedevoneops.springrestapp.bean.TeamFightBean;
 import com.onedevoneops.springrestapp.bean.request.GetHeroNames;
 import com.onedevoneops.springrestapp.bean.request.GetTeamFights;
-import com.onedevoneops.springrestapp.service.FileLoader;
+import com.onedevoneops.springrestapp.util.FileLoader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,11 +14,7 @@ import org.springframework.stereotype.Service;
  * @author erdoganf
  */
 @Service
-public class GrpcController {
-
-  private static final List<HeroNameBean> HERO_NAMES = new ArrayList<>();
-
-  private static final List<TeamFightBean> TEAM_FIGHTS = new ArrayList<>();
+public class PayloadTestService {
 
   public ResponseEntity<GetHeroNames> getSmallPayload() throws IOException {
     List<HeroNameBean> heroNameBeans = FileLoader.loadJson("heronames.json", HeroNameBean.class);
@@ -36,10 +31,10 @@ public class GrpcController {
   }
 
   public void postSmallPayload(GetHeroNames request) {
-    HERO_NAMES.addAll(request.getHeroNames());
+    return;
   }
 
   public void postLargePayload(GetTeamFights request) {
-    TEAM_FIGHTS.addAll(request.getTeamFights());
+    return;
   }
 }

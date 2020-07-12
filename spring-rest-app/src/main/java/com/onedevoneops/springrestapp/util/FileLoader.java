@@ -1,4 +1,4 @@
-package com.onedevoneops.grpcapp.service;
+package com.onedevoneops.springrestapp.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.util.ResourceUtils;
 
 /**
  * @author erdoganf

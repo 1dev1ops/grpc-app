@@ -1,7 +1,8 @@
-package com.onedevoneops.springrestapp.controller;
+package com.onedevoneops.springrestapp.service;
 
 import com.onedevoneops.springrestapp.bean.request.GetHeroNames;
 import com.onedevoneops.springrestapp.bean.request.GetTeamFights;
+import com.onedevoneops.springrestapp.controller.PayloadTestService;
 import java.io.IOException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PayloadTestController {
 
-  private final GrpcController payloadTestService;
+  private final PayloadTestService payloadTestService;
 
-  public PayloadTestController(GrpcController payloadTestService) {
+  public PayloadTestController(PayloadTestService payloadTestService) {
     this.payloadTestService = payloadTestService;
   }
 
