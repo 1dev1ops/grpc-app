@@ -9,6 +9,12 @@
         <module name="grpc-app" />
         <module name="spring-rest-app" />
       </profile>
+      <profile name="Annotation profile for grpc-vs-rest" enabled="true">
+        <sourceOutputDir name="../target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="client" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="client" target="14" />

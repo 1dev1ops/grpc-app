@@ -121,6 +121,7 @@
   <modules>
     <module>grpc-app</module>
     <module>spring-rest-app</module>
+    <module>client</module>
   </modules>
 
 </project>

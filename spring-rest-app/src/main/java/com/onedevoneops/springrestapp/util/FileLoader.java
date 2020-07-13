@@ -16,8 +16,7 @@ public class FileLoader {
   private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
   public static <T> List<T> loadJson(String fileName, Class<T> clazz) throws IOException {
-    var fileInputStream = new FileInputStream(new ClassPathResource(fileName).getFile());
-    InputStreamReader isr = new InputStreamReader(fileInputStream);
+    InputStreamReader isr = new InputStreamReader(FileLoader.class.getClassLoader().getResourceAsStream(fileName));
     CollectionType clazzCollection = OBJECT_MAPPER.getTypeFactory().constructCollectionType(List.class, clazz);
     return OBJECT_MAPPER.readValue(isr, clazzCollection);
   }
