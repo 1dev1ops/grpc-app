@@ -20,7 +20,7 @@ import org.springframework.http.ResponseEntity;
 public class ServerBenchmark {
 
   @Benchmark
-  @BenchmarkMode(Mode.Throughput)
+  @BenchmarkMode(Mode.AverageTime)
   @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void grpcGetWithSmallPayload(ExecutionState state, Blackhole blackhole) {
     HeroNameResponse heroNameResponse = state.stub.getSmallPayload(Empty.newBuilder().build());
@@ -29,7 +29,7 @@ public class ServerBenchmark {
   }
 
   @Benchmark
-  @BenchmarkMode(Mode.Throughput)
+  @BenchmarkMode(Mode.AverageTime)
   @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void grpcGetWithLargePayload(ExecutionState state, Blackhole blackhole) {
     TeamFightResponse teamFightResponse = state.stub.getLargePayload(Empty.newBuilder().build());
@@ -38,7 +38,7 @@ public class ServerBenchmark {
   }
 
   @Benchmark
-  @BenchmarkMode(Mode.Throughput)
+  @BenchmarkMode(Mode.AverageTime)
   @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void grpcPostWithSmallPayload(ExecutionState state, Blackhole blackhole) {
     Empty empty = state.stub.postSmallPayload(state.heroNameGrpcRequest);
@@ -47,7 +47,7 @@ public class ServerBenchmark {
   }
 
   @Benchmark
-  @BenchmarkMode(Mode.Throughput)
+  @BenchmarkMode(Mode.AverageTime)
   @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void grpcPostWithLargePayload(ExecutionState state, Blackhole blackhole) {
     Empty empty = state.stub.postLargePayload(state.teamFightGrpcRequest);
@@ -56,7 +56,7 @@ public class ServerBenchmark {
   }
 
   @Benchmark
-  @BenchmarkMode(Mode.Throughput)
+  @BenchmarkMode(Mode.AverageTime)
   @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void restGetWithSmallPayload(ExecutionState plan, Blackhole blackhole) {
     ResponseEntity<GetHeroNames> smallPayloadRest = plan.restTemplate.getForEntity(plan.uriForSmallPayload,
@@ -65,7 +65,7 @@ public class ServerBenchmark {
   }
 
   @Benchmark
-  @BenchmarkMode(Mode.Throughput)
+  @BenchmarkMode(Mode.AverageTime)
   @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void restGetWithLargePayload(ExecutionState plan, Blackhole blackhole) {
     ResponseEntity<GetTeamFights> largePayloadRest = plan.restTemplate.getForEntity(plan.uriForLargePayload,
@@ -74,7 +74,7 @@ public class ServerBenchmark {
   }
 
   @Benchmark
-  @BenchmarkMode(Mode.Throughput)
+  @BenchmarkMode(Mode.AverageTime)
   @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void restPostWithSmallPayload(ExecutionState state, Blackhole blackhole) {
     ResponseEntity<GetHeroNames> response = state.restTemplate.postForEntity(state.uriForSmallPayload,
@@ -85,7 +85,7 @@ public class ServerBenchmark {
   }
 
   @Benchmark
-  @BenchmarkMode(Mode.Throughput)
+  @BenchmarkMode(Mode.AverageTime)
   @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void restPostWithLargePayload(ExecutionState state, Blackhole blackhole) {
     ResponseEntity<GetTeamFights> response = state.restTemplate.postForEntity(state.uriForLargePayload,
