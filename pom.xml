@@ -10,7 +10,7 @@
 
   <properties>
     <java.version>14</java.version>
-    <grpc.version>1.30.0</grpc.version>
+    <grpc.version>1.53.0</grpc.version>
     <protobuf.version>3.12.0</protobuf.version>
     <protoc.version>3.12.0</protoc.version>
     <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
